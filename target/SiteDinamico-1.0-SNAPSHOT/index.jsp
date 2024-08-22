@@ -51,7 +51,7 @@
             <div class="card-body">
                 <h6><%= site.getNomeSite() %></h6>
                 <p><%= site.getDescricao() %></p>
-                <a href="<%= site.getLink() %>" class="card-link">Link</a>
+                <a href="contaCliques.jsp?id=<%= site.getId() %>" class="card-link"><%= site.getLink() %></a>
                 <p>Total de Cliques: <strong><%= site.getCliques() %></strong></p>
             </div>
         </div>
@@ -64,7 +64,7 @@
         
         <!-- Texto sobre o agregador -->
         <div class="mt-4 p-3 bg-light">
-            <p>Este site é um agregador de links para treinamento de sites dinâmicos do curso RSTI do Senac RS</p>
+            <p>Este site é um agregador de links para treinamento de sites dinâmicos do curso RSTI do Senac RS.</p>
         </div>
     </main>
 
