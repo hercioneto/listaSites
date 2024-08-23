@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="validaSession.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,8 +13,12 @@
         <title>GUIA DE LINKS FAVORITOS</title>
     </head>
     <body>
-        <h1>Administrar sites</h1>
+        <h1>Seja bem vindo <%=usuario %></h1>
+        
+        <h4>Administrar sites</h4>
         <a href="cadastrarSite.jsp">Incluir novo</a><br>
         <a href="listaSites.jsp">Editar</a><br>
+        
+        <p><h5><a href="sair.jsp">Sair</a></h5>
     </body>
 </html>

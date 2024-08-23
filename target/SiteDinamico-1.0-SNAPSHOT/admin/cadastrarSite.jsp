@@ -1,3 +1,4 @@
+<%@ include file="validaSession.jsp" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.http.*" %>

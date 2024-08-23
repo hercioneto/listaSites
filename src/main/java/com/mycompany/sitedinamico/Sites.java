@@ -315,7 +315,7 @@ public class Sites {
         return sites;
     }
     
-    //metodo para retornar buscador
+    //metodo para retornar 
     public static List<Sites> buscar(String termo) {
         List<Sites> sites = new ArrayList<>();
         Connection conn = null;

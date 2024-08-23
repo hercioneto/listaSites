@@ -1,3 +1,4 @@
+<%@ include file="validaSession.jsp" %>
 <%@page import="com.mycompany.sitedinamico.Sites"%>
 <%@ page import="java.util.List" %>
 

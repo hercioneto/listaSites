@@ -1,3 +1,4 @@
+<%@ include file="validaSession.jsp" %>
 <%-- 
     Document   : editarSite
     Created on : 14 de ago. de 2024, 16:00:00

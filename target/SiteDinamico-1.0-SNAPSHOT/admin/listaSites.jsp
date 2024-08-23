@@ -1,3 +1,4 @@
+<%@ include file="validaSession.jsp" %>
 
 <%-- 
     Document   : listaSites
