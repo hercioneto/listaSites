@@ -27,7 +27,7 @@
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Listar por Categoria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Buscar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buscar.jsp">Buscar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
                 </ul>
             </nav>

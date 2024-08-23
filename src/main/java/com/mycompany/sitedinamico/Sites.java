@@ -16,7 +16,8 @@ import java.util.List;
  * @author Professor
  */
 public class Sites {
-    private int id ;
+
+    private int id;
     private String nomeSite;
     private String descricao;
     private String link;
@@ -91,8 +92,8 @@ public class Sites {
     public void setCliques(int cliques) {
         this.cliques = cliques;
     }
-   
-    // Método para salvar a categoria no banco de dados
+
+    // Método para salvar o site no banco de dados
     public boolean salvar() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -104,7 +105,6 @@ public class Sites {
             ps.setString(1, getNomeSite());
             ps.setString(2, getDescricao());
             ps.setString(3, getLink());
-            
 
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;
@@ -113,15 +113,19 @@ public class Sites {
             return false;
         } finally {
             try {
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    // Método para retornar todas as categorias do banco de dados
+    // Método para retornar todas os sites do banco de dados
     public static List<Sites> getAllSites() {
         List<Sites> sites = new ArrayList<>();
         Connection conn = null;
@@ -147,9 +151,15 @@ public class Sites {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -157,7 +167,7 @@ public class Sites {
         return sites;
     }
 
-    // Método para retornar uma categoria específica do banco de dados
+    // Método para retornar um site específico do banco de dados
     public static List<Sites> getSite(int id) {
         List<Sites> sites = new ArrayList<>();
         Connection conn = null;
@@ -184,9 +194,15 @@ public class Sites {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -194,7 +210,7 @@ public class Sites {
         return sites;
     }
 
-    // Método para atualizar uma categoria no banco de dados
+    // Método para atualizar um site no banco de dados
     public boolean atualizar() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -215,15 +231,19 @@ public class Sites {
             return false;
         } finally {
             try {
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    // Método para apagar uma categoria do banco de dados
+    // Método para apagar um site do banco de dados
     public boolean deletar() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -241,14 +261,18 @@ public class Sites {
             return false;
         } finally {
             try {
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
-    
+
     //metodo para retornar apenas os 4 ultimos registros para a home
     public static List<Sites> getUltimosSites() {
         List<Sites> sites = new ArrayList<>();
@@ -275,13 +299,66 @@ public class Sites {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         return sites;
+    }
+
+    // Método para contar os cliques
+    public boolean contaCliques() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String selectSql = "SELECT cliques FROM sites WHERE id = ?";
+        String updateSql = "UPDATE sites SET cliques = ? WHERE id = ?";
+
+        try {
+            conn = dbUtil.getConnection();
+            // Primeiro, busca a quantidade atual de cliques
+            ps = conn.prepareStatement(selectSql);
+            ps.setInt(1, getId());
+            rs = ps.executeQuery();
+
+            int cliquesAtual = 0;
+            if (rs.next()) {
+                cliquesAtual = rs.getInt("cliques");
+            }
+
+            // Incrementa a quantidade de cliques
+            int novoCliques = cliquesAtual + 1;
+
+            // Atualiza a quantidade de cliques no banco de dados
+            ps = conn.prepareStatement(updateSql);
+            ps.setInt(1, novoCliques);
+            ps.setInt(2, getId());
+
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

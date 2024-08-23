@@ -1,11 +1,9 @@
 <%-- 
-    Document   : index
-    Created on : 22 de ago. de 2024, 13:52:32
-    Author     : Hercio Neto
+    Document   : buscar
+    Created on : 23 de ago. de 2024, 13:46:06
+    Author     : Professor
 --%>
 
-<%@page import="java.util.List"%>
-<%@page import="com.mycompany.sitedinamico.Sites"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -25,7 +23,7 @@
             </div>
             <nav class="p-2">
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Listar por Categoria</a></li>
                     <li class="nav-item"><a class="nav-link" href="buscar.jsp">Buscar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
@@ -38,27 +36,21 @@
     <main class="container mt-5">
         <div class="row">
             <div class="col-12">
-                <h5>Últimos Adicionados</h5>
+                <h5>Buscar</h5>
             </div>
         </div>
         <div class="row">
-            <% 
-    List<Sites> ultimosSites = Sites.getUltimosSites();
-    for (Sites site : ultimosSites) { 
-%>
-    <div class="col-md-3 mb-3">
+            
+    <div class="col-md-12 mb-3">
         <div class="card">
             <div class="card-body">
-                <h6><%= site.getNomeSite() %></h6>
-                <p><%= site.getDescricao() %></p>
-                <a href="contaCliques.jsp?id=<%= site.getId() %>" class="card-link"><%= site.getLink() %></a>
-                <p>Total de Cliques: <strong><%= site.getCliques() %></strong></p>
+                <h6>Buscar link</h6>
+                <form action="buscar.jsp">
+                    <input type="text" name="buscar" id="buscar" placeholder="digite um termo"> <input type="button" value="Buscar">
+                </form>
             </div>
         </div>
     </div>
-<% 
-    } 
-%>
             
         </div>
         
