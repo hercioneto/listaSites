@@ -314,6 +314,48 @@ public class Sites {
         }
         return sites;
     }
+    
+    //metodo para retornar buscador
+    public static List<Sites> buscar(String termo) {
+        List<Sites> sites = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM sites where nomeSite Like '%" + termo +"%' order by nomeSite";
+
+        try {
+            conn = dbUtil.getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Sites site = new Sites();
+                site.setId(rs.getInt("id"));
+                site.setNomeSite(rs.getString("nomeSite"));
+                site.setDescricao(rs.getString("descricao"));
+                site.setLink(rs.getString("link"));
+                site.setCliques(rs.getInt("cliques"));
+                sites.add(site);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return sites;
+    }
 
     // Método para contar os cliques
     public boolean contaCliques() {
