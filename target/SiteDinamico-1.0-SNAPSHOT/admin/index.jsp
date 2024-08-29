@@ -18,6 +18,10 @@
         <h4>Administrar sites</h4>
         <a href="cadastrarSite.jsp">Incluir novo</a><br>
         <a href="listaSites.jsp">Editar</a><br>
+        <p></p>
+        <h4>Administrar Categorias</h4>
+        <a href="cadastrarCategoria.jsp">Incluir nova</a><br>
+        <a href="listaCategorias.jsp">Editar</a><br>
         
         <p><h5><a href="sair.jsp">Sair</a></h5>
     </body>

@@ -21,14 +21,14 @@
     <header class="container mt-3">
         <div class="d-flex justify-content-between align-items-center">
             <div id="logo" class="p-2">
-                <img src="logo.png" alt="Logo do Site" class="img-fluid" style="max-height: 100px;">
+                <img src="imagens/logo.png" alt="Logo do Site" class="img-fluid" style="max-height: 100px;">
             </div>
             <nav class="p-2">
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Listar por Categoria</a></li>
+                    <li class="nav-item"><a class="nav-link" href="listarCategorias.jsp">Listar por Categoria</a></li>
                     <li class="nav-item"><a class="nav-link" href="buscar.jsp">Buscar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/index.jsp">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -51,7 +51,7 @@
             <div class="card-body">
                 <h6><%= site.getNomeSite() %></h6>
                 <p><%= site.getDescricao() %></p>
-                <a href="contaCliques.jsp?id=<%= site.getId() %>" class="card-link"><%= site.getLink() %></a>
+                <a href="contaCliques.jsp?id=<%= site.getId() %>" class="card-link" target="_blank"><%= site.getLink() %></a>
                 <p>Total de Cliques: <strong><%= site.getCliques() %></strong></p>
             </div>
         </div>

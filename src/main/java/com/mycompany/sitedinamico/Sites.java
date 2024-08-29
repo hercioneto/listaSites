@@ -22,6 +22,7 @@ public class Sites {
     private String descricao;
     private String link;
     private int cliques;
+    private int idCategoria;
 
     /**
      * @return the id
@@ -92,12 +93,21 @@ public class Sites {
     public void setCliques(int cliques) {
         this.cliques = cliques;
     }
+    
+    public int getIdCategoria() { 
+        return idCategoria; 
+    } 
+    
+    public void setIdCategoria(int idCategoria) { 
+        this.idCategoria = idCategoria; 
+    }  
+
 
     // Método para salvar o site no banco de dados
     public boolean salvar() {
         Connection conn = null;
         PreparedStatement ps = null;
-        String sql = "INSERT INTO sites (nomeSite,descricao,link,cliques) VALUES (?,?,?,0)";
+        String sql = "INSERT INTO sites (nomeSite,descricao,link,cliques,id_categoria) VALUES (?,?,?,0,?)";
 
         try {
             conn = dbUtil.getConnection();
@@ -105,6 +115,7 @@ public class Sites {
             ps.setString(1, getNomeSite());
             ps.setString(2, getDescricao());
             ps.setString(3, getLink());
+            ps.setInt(4, getIdCategoria());
 
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;
@@ -145,6 +156,7 @@ public class Sites {
                 site.setDescricao(rs.getString("descricao"));
                 site.setLink(rs.getString("link"));
                 site.setCliques(rs.getInt("cliques"));
+                site.setIdCategoria(rs.getInt("id_categoria"));
                 sites.add(site);
             }
         } catch (SQLException e) {
@@ -188,6 +200,7 @@ public class Sites {
                 site.setDescricao(rs.getString("descricao"));
                 site.setLink(rs.getString("link"));
                 site.setCliques(rs.getInt("cliques"));
+                site.setIdCategoria(rs.getInt("id_categoria"));
                 sites.add(site);
             }
         } catch (SQLException e) {
@@ -214,7 +227,7 @@ public class Sites {
     public boolean atualizar() {
         Connection conn = null;
         PreparedStatement ps = null;
-        String sql = "UPDATE sites  SET nomeSite = ?, descricao = ?, link = ? WHERE id = ?";
+        String sql = "UPDATE sites  SET nomeSite = ?, descricao = ?, link = ?,id_categoria=?  WHERE id = ?";
 
         try {
             conn = dbUtil.getConnection();
@@ -222,7 +235,9 @@ public class Sites {
             ps.setString(1, getNomeSite());
             ps.setString(2, getDescricao());
             ps.setString(3, getLink());
-            ps.setInt(4, getId());
+            ps.setInt(4, getIdCategoria());
+            ps.setInt(5, getId());
+            
 
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0;
@@ -293,6 +308,7 @@ public class Sites {
                 site.setDescricao(rs.getString("descricao"));
                 site.setLink(rs.getString("link"));
                 site.setCliques(rs.getInt("cliques"));
+                site.setIdCategoria(rs.getInt("id_categoria"));
                 sites.add(site);
             }
         } catch (SQLException e) {
@@ -335,6 +351,7 @@ public class Sites {
                 site.setDescricao(rs.getString("descricao"));
                 site.setLink(rs.getString("link"));
                 site.setCliques(rs.getInt("cliques"));
+                site.setIdCategoria(rs.getInt("id_categoria"));
                 sites.add(site);
             }
         } catch (SQLException e) {
@@ -402,5 +419,48 @@ public class Sites {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public static List<Sites> SitesPorCategoria(int idCategoria) {
+        List<Sites> sites = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM sites where id_categoria = ? order by nomeSite";
+
+        try {
+            conn = dbUtil.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Sites site = new Sites();
+                site.setId(rs.getInt("id"));
+                site.setNomeSite(rs.getString("nomeSite"));
+                site.setDescricao(rs.getString("descricao"));
+                site.setLink(rs.getString("link"));
+                site.setCliques(rs.getInt("cliques"));
+                site.setIdCategoria(rs.getInt("id_categoria"));
+                sites.add(site);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return sites;
     }
 }

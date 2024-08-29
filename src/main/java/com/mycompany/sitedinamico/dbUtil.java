@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class dbUtil {
-    private static final String URL = "jdbc:mysql://localhost:3306/rsti2024";
+    private static final String URL = "jdbc:mysql://localhost:3306/rsti2024?useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root"; // Mude se o usuário for diferente
     private static final String PASSWORD = ""; // Coloque a senha do MySQL, se houver
 

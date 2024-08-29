@@ -9,6 +9,7 @@
     <title>Excluir Site</title>
 </head>
 <body>
+    <%@ include file="menu.jsp" %>
     <h2>Resultado da Exclusão</h2>
     
     <%

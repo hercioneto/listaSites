@@ -15,7 +15,7 @@
         String password = "1234";
                 
         if (user.equals(usuario) && password.equals(senha)) {            
-            session.setAttribute("usuario", usuario);
+            session.setAttribute("logado", usuario);
             response.sendRedirect("index.jsp");
         } else {
             request.setAttribute("mensagem", "Usuário ou senha inválidos!");

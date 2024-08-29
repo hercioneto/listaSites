@@ -10,19 +10,24 @@
     <h2>Resultado da Atualização</h2>
     
     <%
+        request.setCharacterEncoding("UTF-8");
+        
         String idS = request.getParameter("id");
         String nomeSite = request.getParameter("nomeSite");
         String descricao = request.getParameter("descricao");
         String link = request.getParameter("link");
+        String categoriaIdS = request.getParameter("categoria_id");
         
 
-        if (idS != null && !idS.isEmpty()) {
+        if (idS != null && !idS.isEmpty() && categoriaIdS != null && !categoriaIdS.isEmpty()) {
             int id = Integer.parseInt(idS);
+            int idCategoria = Integer.parseInt(categoriaIdS);
             Sites site = new Sites();
             site.setId(id);
             site.setNomeSite(nomeSite);
             site.setDescricao(descricao);
             site.setLink(link);
+            site.setIdCategoria(idCategoria);
             
 
             boolean sucesso = site.atualizar();
