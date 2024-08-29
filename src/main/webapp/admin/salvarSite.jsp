@@ -7,7 +7,7 @@
 
 
 <%@page import="com.mycompany.sitedinamico.Sites"%>
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +17,17 @@
 <body>
     <h1>Salvando site</h1>
 <%
+    request.setCharacterEncoding("UTF-8");
     String nomeSite = request.getParameter("nomeSite");
     String descricao = request.getParameter("descricao");
     String link = request.getParameter("link");
+    int idCategoria = Integer.parseInt(request.getParameter("categoria_id")); 
 
     Sites site = new Sites();
     site.setNomeSite(nomeSite);
     site.setDescricao(descricao);
     site.setLink(link);
+    site.setIdCategoria(idCategoria);
 
     boolean sucesso = site.salvar();
 

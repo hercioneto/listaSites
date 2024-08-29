@@ -1,3 +1,4 @@
+<%@page import="com.mycompany.sitedinamico.Categorias"%>
 <%@ include file="validaSession.jsp" %>
 <%@page import="com.mycompany.sitedinamico.Sites"%>
 <%@ page import="java.util.List" %>
@@ -10,6 +11,7 @@
     <title>Visualizar Site</title>
 </head>
 <body>
+    <%@ include file="menu.jsp" %>
     <h1>Visualizar Site</h1>
     <%
         String idS = request.getParameter("id");
@@ -21,12 +23,17 @@
                     out.println("Site não encontrado.");
                 } else {
                     Sites site = sites.get(0); // Assumindo que getSite retorna uma lista com um único item.
+                    
+                    Categorias categoria = Categorias.getCategoria(site.getIdCategoria()).get(0);
     %>
     <div><strong>Nome:</strong> <%= site.getNomeSite() %></div>
     <div><strong>Descrição:</strong> <%= site.getDescricao() %></div>
     <div><strong>Link:</strong> <%= site.getLink() %></div>
     <div><strong>Cliques:</strong> <%= site.getCliques() %></div>
+    <div><strong>Categoria:</strong> <%= categoria.getNomeCategoria() %></div>
+    
     <%
+        
                 }
             } catch (NumberFormatException e) {
                 out.println("ID do site inválido.");

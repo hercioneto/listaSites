@@ -15,6 +15,7 @@
     <title>Lista de Sites</title>
 </head>
 <body>
+    <%@ include file="menu.jsp" %>
     <h2>Lista de Sites</h2>
     <table border="1">
         <tr>

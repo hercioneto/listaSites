@@ -4,8 +4,8 @@
     Author     : Professor
 --%>
 
+<%@page import="com.mycompany.sitedinamico.Categorias"%>
 <%@page import="java.util.List"%>
-<%@page import="com.mycompany.sitedinamico.Sites"%>
 <%@page import="com.mycompany.sitedinamico.Sites"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
         <header class="container mt-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div id="logo" class="p-2">
-                    <img src="imagens/logo.png"  alt="Logo do Site" class="img-fluid" style="max-height: 100px;">
+                    <img src="imagens/logo.png" alt="Logo do Site" class="img-fluid" style="max-height: 100px;">
                 </div>
                 <nav class="p-2">
                     <ul class="nav">
@@ -39,7 +39,7 @@
         <main class="container mt-5">
             <div class="row">
                 <div class="col-12">
-                    <h5>Buscar</h5>
+                    <h5>Categorias</h5>
                 </div>
             </div>
             <div class="row">
@@ -47,47 +47,69 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6>Buscar link</h6>
-                            <form action="buscar.jsp" method="POST">
-                                <input type="text" name="buscar" id="buscar" placeholder="digite um termo"> 
-                                <input type="submit" value="Buscar">
-                            </form>
+                          
+                              <div class="row">
+                            <%
+                                List<Categorias> categorias = Categorias.getAllCategorias();
+                                if (categorias.isEmpty()) {
+                                    out.println("Nenhuma categoria encontrada.");
+                                } else {
+                                    for (Categorias categoria : categorias) {
+
+                            %><div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                    <a href="listarCategorias.jsp?idCategoria=<%= categoria.getIdCategoria() %>"><%= categoria.getNomeCategoria() %></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <%                                }
+                                }
+                            %>
+                              </div>
                         </div>
                     </div>
                 </div>
-                <% 
-                String termoBusca = request.getParameter("buscar");
-                
-                if (termoBusca!= null && !termoBusca.isEmpty()){ %>
+                <%
+                    String idCategoriaS = request.getParameter("idCategoria");
+                     if (idCategoriaS != null && !idCategoriaS.isEmpty()) {
+
+                     int idCategoria = Integer.parseInt(idCategoriaS);
+                categorias = Categorias.getCategoria(idCategoria);
+                if (categorias != null) {
+    %>
+    
+    
                 <div class="row">
                     <div class="col-12">
-                        <h5>Resultado da busca por: <%= termoBusca %> </h5>
+                        <h5>Mostrando categorias: <strong><%= categorias.get(0).getNomeCategoria() %></strong> </div> </h5>
                     </div>
                 </div>
                 <div class="row">
                     <%
-                        
-                        List<Sites> ultimosSites = Sites.buscar(termoBusca);
-                        for (Sites site : ultimosSites) {
+
+                        List<Sites> sites = Sites.SitesPorCategoria(idCategoria);
+                        for (Sites site : sites) {
                     %>
                     <div class="col-md-3 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 <h6><%= site.getNomeSite()%></h6>
                                 <p><%= site.getDescricao()%></p>
-                                <a href="contaCliques.jsp?id=<%= site.getId()%>" class="card-link"><%= site.getLink()%></a>
+                                <a href="contaCliques.jsp?id=<%= site.getId()%>" class="card-link" target="_blank"><%= site.getLink()%></a>
                                 <p>Total de Cliques: <strong><%= site.getCliques()%></strong></p>
                             </div>
                         </div>
                     </div>
                     <%
+                        
                         }
                     %>
 
                 </div>
 
             </div>
-                    <% } %>
+            <% }  }%>
 
             <!-- Texto sobre o agregador -->
             <div class="mt-4 p-3 bg-light">

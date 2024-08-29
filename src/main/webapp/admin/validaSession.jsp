@@ -1,8 +1,8 @@
 <%
     String usuario = "";
-    if (session.getAttribute("usuario") == null) {
+    if (session.getAttribute("logado") == null) {
         response.sendRedirect("login.jsp");
     } else {
-         usuario = (String) session.getAttribute("usuario");
+         usuario = (String) session.getAttribute("logado");
     }
 %>
