@@ -17,7 +17,7 @@
 <body>
     <h2>Login</h2>
     <form action="validaLogin.jsp" method="post">
-        Usuário: <input type="text" name="usuario"><br>
+        Usuário: <input type="text" name="login"><br>
         Senha: <input type="password" name="senha"><br>
         <input type="submit" value="Entrar">
     </form>

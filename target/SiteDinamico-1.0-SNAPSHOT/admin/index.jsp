@@ -13,7 +13,7 @@
         <title>GUIA DE LINKS FAVORITOS</title>
     </head>
     <body>
-        <h1>Seja bem vindo <%=usuario %></h1>
+        <h1>Seja bem vindo <%=nomeUsuario %></h1>
         
         <h4>Administrar sites</h4>
         <a href="cadastrarSite.jsp">Incluir novo</a><br>
@@ -22,6 +22,10 @@
         <h4>Administrar Categorias</h4>
         <a href="cadastrarCategoria.jsp">Incluir nova</a><br>
         <a href="listaCategorias.jsp">Editar</a><br>
+        
+        <h4>Administrar Uuários</h4>
+        <a href="cadastrarUsuario.jsp">Incluir novo</a><br>
+        <a href="listaUsuarios.jsp">Editar</a><br>
         
         <p><h5><a href="sair.jsp">Sair</a></h5>
     </body>

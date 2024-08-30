@@ -1,8 +1,10 @@
 <%
-    String usuario = "";
-    if (session.getAttribute("logado") == null) {
+    String loginU = "";
+    String nomeUsuario= "";
+    if (session.getAttribute("login") == null) {
         response.sendRedirect("login.jsp");
     } else {
-         usuario = (String) session.getAttribute("logado");
+         loginU = (String) session.getAttribute("login");
+         nomeUsuario = (String) session.getAttribute("nomeUsuario");
     }
 %>

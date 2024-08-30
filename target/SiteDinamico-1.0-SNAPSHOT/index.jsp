@@ -21,7 +21,7 @@
     <header class="container mt-3">
         <div class="d-flex justify-content-between align-items-center">
             <div id="logo" class="p-2">
-                <img src="imagens/logo.png" alt="Logo do Site" class="img-fluid" style="max-height: 100px;">
+                <a href="index.jsp"> <img src="imagens/logo.png"  alt="Logo do Site" class="img-fluid" style="max-height: 100px;"></a>
             </div>
             <nav class="p-2">
                 <ul class="nav">
