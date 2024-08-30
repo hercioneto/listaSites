@@ -29,5 +29,6 @@
     <li><a href="index.jsp">Voltar para Inicial</a></li>
     <li><a href="listaSites.jsp">Listar Sites</a></li>
     <li><a href="listaCategorias.jsp">Listar Categorias</a></li>
+    <li><a href="listaUsuarios.jsp">Listar Usuários</a></li>
 </ul>
     <br>

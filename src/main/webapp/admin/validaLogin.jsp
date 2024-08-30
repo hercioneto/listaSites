@@ -4,22 +4,29 @@
     Author     : Professor
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="com.mycompany.sitedinamico.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
-        String usuario = request.getParameter("usuario");
+        String login = request.getParameter("login");
         String senha = request.getParameter("senha");
 
-        //Poderiamos buscar no banco se usuario e senha são válidos
-        String user = "admin";
-        String password = "1234";
-                
-        if (user.equals(usuario) && password.equals(senha)) {            
-            session.setAttribute("logado", usuario);
-            response.sendRedirect("index.jsp");
-        } else {
+        Usuarios user = new Usuarios();
+        user.setLogin(login);
+        user.setSenha(senha);
+        
+        
+        Usuarios userLogado = user.login();
+        
+        if (userLogado == null) {
             request.setAttribute("mensagem", "Usuário ou senha inválidos!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+        } else {
+            session.setAttribute("login", userLogado.getLogin());
+            session.setAttribute("nomeUsuario", userLogado.getNome());
+            response.sendRedirect("index.jsp");
+    }
+    
 
 %>

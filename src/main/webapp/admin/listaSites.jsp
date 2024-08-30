@@ -1,10 +1,10 @@
-<%@ include file="validaSession.jsp" %>
 
 <%-- 
     Document   : listaSites
     Created on : 14 de ago. de 2024, 16:10:00
     Author     : Aluno
 --%>
+<%@ include file="validaSession.jsp" %>
 
 <%@ page import="java.util.List" %>
 <%@page import="com.mycompany.sitedinamico.Sites"%>
